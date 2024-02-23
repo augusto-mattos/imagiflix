@@ -27,7 +27,7 @@ function Hero({ title = "Avengers Endgame", score = 10 }) {
         <p className="text-base">
           Nota{" "}
           <span
-            className={`inline-block py-2 px-3 border-2 rounded-full bg-black bg-opacity-75 ${getBorderColor()}`}
+            className={`inline-block py-1 px-2 border-2 ml-2 rounded-full bg-black bg-opacity-75 ${getBorderColor()}`}
           >
             {score}
           </span>
