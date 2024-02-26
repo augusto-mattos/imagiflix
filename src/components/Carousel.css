@@ -1,0 +1,10 @@
+.carousel .slick-slider .slick-list {
+    padding: 2rem 0;
+}
+
+.slick-slide {
+    width: auto !important;
+    :hover {
+        z-index: 10;
+    }
+}
