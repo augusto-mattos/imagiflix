@@ -25,11 +25,21 @@ const App = () => {
     fetchData();
   }, []);
   
+  const getFeaturedMovie = () => movies && movies.results[0];
+
+  const getMovieList = () => {
+    if(movies) {
+      const [featured, ...movieList] = movies?.results;
+      return movieList;
+    }
+    return [];
+  }
+ 
   return (
     <div className='m-auto antialised font-sans bg-black text-white'>
-      <Hero {...movies?.results[0]} />
+      <Hero {...getFeaturedMovie()} />
       <Navbar />
-      <Carousel title="Filmes em destaque"/>
+      <Carousel title="Filmes em destaque" data={getMovieList()}/>
       <Carousel title="Séries"/>
     </div>
   );
