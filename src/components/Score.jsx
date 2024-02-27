@@ -3,8 +3,6 @@ import "./Score.css";
 
 function Score({ value }) {
 
-    
-
   const getBorderColor = () => {
     if (value >= 7) {
       return "border-green-400";
