@@ -12,15 +12,19 @@ const App = () => {
   const { URL, APISTRING } = CONST;
 
   const [movies, setMovies] = useState();
+  const [series, setSeries] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       
-      const response = await fetch(`${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`);
-      
-      const data = await response.json();
-      
-      setMovies(data);
+      const movies = await fetch(`${URL}/discover/movie${APISTRING}&sort_by=popularity.desc`);
+      const moviesData = await movies.json();
+      setMovies(moviesData);
+
+      const series = await fetch(`${URL}/discover/tv${APISTRING}&sort_by=popularity.desc`);
+      const seriesData = await series.json();
+      setSeries(seriesData);
+
     }
     fetchData();
   }, []);
@@ -40,7 +44,7 @@ const App = () => {
       <Hero {...getFeaturedMovie()} />
       <Navbar />
       <Carousel title="Filmes em destaque" data={getMovieList()}/>
-      <Carousel title="Séries"/>
+      <Carousel title="Séries populares" data={series?.results}/>
     </div>
   );
 }
