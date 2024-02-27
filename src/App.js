@@ -3,6 +3,7 @@ import CONST from "./data/constantes";
 import Hero from "./components/Hero";
 import Navbar from './components/Navbar';
 import Carousel from "./components/Carousel";
+import Footer from "./components/Footer";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -45,6 +46,7 @@ const App = () => {
       <Navbar />
       <Carousel title="Filmes em destaque" data={getMovieList()}/>
       <Carousel title="Séries populares" data={series?.results}/>
+      <Footer />
     </div>
   );
 }
