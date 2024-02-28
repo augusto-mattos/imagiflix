@@ -1,13 +1,12 @@
 import React from "react";
 import Slick from "react-slick";
-import mockData from "../data/mockData";
 import CONST from "../data/constantes";
 import "./Carousel.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faPlayCircle } from "@fortawesome/free-solid-svg-icons";
 import Score from "./Score";
 
-function Carousel({ data = mockData, title, name }) {
+function Carousel({ data = [], title, name, onItemClick }) {
 
   const { IMAGEURL } = CONST;
   
@@ -35,6 +34,12 @@ function Carousel({ data = mockData, title, name }) {
     nextArrow: <SlickArrow direction="right" />,
   };
 
+  const handleClick = (item) => {
+    if (onItemClick) {
+      onItemClick(item);
+    }
+  };
+
   return (
     <section className="carousel">
       <h2 className="relative z-10 font-light text-2xl ml-16 mt-8">
@@ -44,8 +49,8 @@ function Carousel({ data = mockData, title, name }) {
         className="relative mb-8"
         {...options}
       >
-        {data.map(({ cover, poster_path, title, name, index, vote_average}) => (
-          <article key={index} className="relative transition-all duration-500 ease-in-out transform hover:scale-110">
+        {data.map(({ id, cover, poster_path, title, name, index, vote_average }) => (
+          <article key={index} onClick={() => handleClick({ id, cover, poster_path, title, name, vote_average })} className="relative transition-all duration-500 ease-in-out transform hover:scale-110">
             <img
               src={poster_path ? `${IMAGEURL}/w200/${poster_path}` : cover}
               alt={title ? title : name}
