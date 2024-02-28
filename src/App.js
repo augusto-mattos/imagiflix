@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CONST from "./data/constantes";
+import Loading from "./components/Loading";
 import Hero from "./components/Hero";
 import Navbar from './components/Navbar';
 import Carousel from "./components/Carousel";
@@ -14,6 +15,7 @@ const App = () => {
 
   const [movies, setMovies] = useState();
   const [series, setSeries] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +28,7 @@ const App = () => {
       const seriesData = await series.json();
       setSeries(seriesData);
 
+      setLoading(false)
     }
     fetchData();
   }, []);
@@ -42,11 +45,21 @@ const App = () => {
  
   return (
     <div className='m-auto antialised font-sans bg-black text-white'>
-      <Hero {...getFeaturedMovie()} />
+      {loading &&
+        <>
+          <Loading />
+          <Navbar />
+        </> 
+      }
+     {!loading && (
+     <>
+     <Hero {...getFeaturedMovie()} />
       <Navbar />
       <Carousel title="Filmes em destaque" data={getMovieList()}/>
       <Carousel title="Séries populares" data={series?.results}/>
       <Footer />
+     </>
+     )}
     </div>
   );
 }
