@@ -49,8 +49,8 @@ function Carousel({ data = [], title, name, onItemClick }) {
         className="relative mb-8"
         {...options}
       >
-        {data.map(({ id, cover, poster_path, title, name, index, vote_average }) => (
-          <article key={index} onClick={() => handleClick({ id, cover, poster_path, title, name, vote_average })} className="relative transition-all duration-500 ease-in-out transform hover:scale-110">
+        {data.map(({ id, cover, poster_path, title, name, index, vote_average, original_title, original_name, overview, first_air_date, release_date }) => (
+          <article key={index} onClick={() => handleClick({ id, cover, poster_path, title, name, vote_average, original_title, original_name, overview, first_air_date, release_date })} className="relative transition-all duration-500 ease-in-out transform hover:scale-110">
             <img
               src={poster_path ? `${IMAGEURL}/w200/${poster_path}` : cover}
               alt={title ? title : name}
